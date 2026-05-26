@@ -1,0 +1,113 @@
+# Dependabot configuration
+# Docs: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+#
+# Auto-opens PRs for dependency security updates + scheduled minor/patch updates.
+# Reviewer auto-assigned via .github/CODEOWNERS
+
+version: 2
+updates:
+
+  # ===========================================
+  # Frontend — npm dependencies
+  # ===========================================
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "frontend"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Group related deps into single PRs (reduce PR noise)
+    groups:
+      next-react:
+        patterns:
+          - "next"
+          - "next-*"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "postcss"
+          - "autoprefixer"
+      framer-three:
+        patterns:
+          - "framer-motion"
+          - "three"
+          - "@react-three/*"
+      testing:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "playwright"
+          - "@playwright/*"
+      linting:
+        patterns:
+          - "eslint*"
+          - "prettier"
+          - "@typescript-eslint/*"
+      dev-deps-minor:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # ===========================================
+  # Backend — Python dependencies
+  # ===========================================
+  - package-ecosystem: "pip"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "backend"
+    commit-message:
+      prefix: "chore(deps-py)"
+      include: "scope"
+    groups:
+      fastapi-stack:
+        patterns:
+          - "fastapi"
+          - "uvicorn"
+          - "pydantic"
+          - "starlette"
+      ml-stack:
+        patterns:
+          - "sentence-transformers"
+          - "faiss-*"
+          - "transformers"
+          - "torch"
+          - "numpy"
+      llm-clients:
+        patterns:
+          - "google-generativeai"
+          - "anthropic"
+          - "langchain*"
+
+  # ===========================================
+  # GitHub Actions
+  # ===========================================
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(ci)"
