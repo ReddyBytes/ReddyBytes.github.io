@@ -1,0 +1,24 @@
+# Backend dependencies for reddybytes.github.io portfolio
+# Pinned for reproducible builds. Dependabot will propose updates weekly.
+#
+# AI / RAG dependencies (sentence-transformers, faiss, google-generativeai, anthropic, langchain)
+# will be added in later commits as we walk through AI-LEARNING-LOG.md stages.
+
+# ─── Web framework ──────────────────────────────────────────────
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# ─── Validation / settings ──────────────────────────────────────
+pydantic==2.10.3
+pydantic-settings==2.7.0
+
+# ─── Rate limiting + logging ────────────────────────────────────
+slowapi==0.1.9
+structlog==24.4.0
+
+# ─── Dev / test (pinned for CI reproducibility) ─────────────────
+pytest==8.3.4
+pytest-asyncio==0.25.0
+httpx==0.28.1
+mypy==1.13.0
+ruff==0.8.4
