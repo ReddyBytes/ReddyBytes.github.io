@@ -206,7 +206,7 @@ ReddyBytes.github.io/                # ONE repo for everything
 │   ├── DESIGN-SYSTEM.md
 │   ├── RAG-BACKEND.md
 │   ├── CONTENT-GUIDE.md
-│   ├── AI-LEARNING-LOG.md
+│   ├── ai-learning/                  # 17 numbered files — RAG learning curriculum
 │   ├── DEPLOYMENT.md
 │   ├── TROUBLESHOOTING.md
 │   ├── NEXT-SESSION.md

@@ -2,7 +2,7 @@
 
 The FastAPI service on Hugging Face Spaces that powers the AI assistant orb, terminal commands, and personality scanner. **Plug-and-play architecture**: every layer (LLM, embeddings, vector DB, knowledge loader, response guardian) swappable via interface.
 
-> **Treat this build as a learning project.** See `AI-LEARNING-LOG.md` for the 9-stage tuning curriculum.
+> **Treat this build as a learning project.** See [`ai-learning/`](./ai-learning/) for the 9-stage tuning curriculum (concepts in `02-embeddings.md` onward, stages in `08-stage-2-minimal-rag.md` onward).
 
 ---
 
@@ -259,7 +259,7 @@ class LLMRouter:
 
 ## Tuning playbook (high-level summary)
 
-The RAG is treated as a 9-stage learning project. **Do NOT ship without going through every stage.** Each stage produces a measurable improvement; document learnings in `AI-LEARNING-LOG.md`.
+The RAG is treated as a 9-stage learning project. **Do NOT ship without going through every stage.** Each stage produces a measurable improvement; document learnings in [`ai-learning/`](./ai-learning/) (one numbered file per concept / stage).
 
 | Stage | Focus | Time |
 |---|---|---|
@@ -273,7 +273,7 @@ The RAG is treated as a 9-stage learning project. **Do NOT ship without going th
 | 8 | Recruiter modes (per-role specialized prompts) | 1 day |
 | 9 | Production hardening (rate limits, cache, cold-start, streaming, eval-in-CI) | 1 day |
 
-See `AI-LEARNING-LOG.md` for detailed playbook.
+See [`ai-learning/README.md`](./ai-learning/README.md) for the full numbered curriculum.
 
 ---
 
