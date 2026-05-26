@@ -1,0 +1,73 @@
+[project]
+name = "reddybytes-portfolio-backend"
+version = "0.1.0"
+description = "FastAPI + RAG backend powering the AI assistant on reddybytes.github.io"
+readme = "backend/README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "Penchala Reddy", email = "penchalareddy260@gmail.com" },
+]
+
+# ─── Ruff (linter + formatter) ──────────────────────────────────
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["backend", "scripts", "tests"]
+exclude = [
+    ".venv",
+    "venv",
+    "data",
+    "frontend",
+    ".git",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # isort (import sorting)
+    "B",    # bugbear
+    "UP",   # pyupgrade
+    "C4",   # comprehensions
+    "SIM",  # simplify
+    "RET",  # return statements
+    "TCH",  # type-checking blocks
+]
+ignore = [
+    "E501",  # line length handled by formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]  # asserts are fine in tests
+
+# ─── mypy (static type checker) ─────────────────────────────────
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["backend", "scripts"]
+ignore_missing_imports = true
+disallow_untyped_decorators = false  # FastAPI decorators
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+# ─── pytest ─────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--strict-config",
+]
+asyncio_mode = "auto"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests requiring external services",
+]
