@@ -89,7 +89,7 @@ npm run dev
 | [ARCHITECTURE.md](./docs/ARCHITECTURE.md) | System diagram, folder structure (monorepo), build + deploy flow |
 | [DESIGN-SYSTEM.md](./docs/DESIGN-SYSTEM.md) | Colors (hybrid palette), typography, motion, component patterns |
 | [RAG-BACKEND.md](./docs/RAG-BACKEND.md) | AI assistant architecture, plug-and-play interfaces |
-| [AI-LEARNING-LOG.md](./docs/AI-LEARNING-LOG.md) | 9-stage RAG tuning curriculum (build-in-public learning) |
+| [ai-learning/](./docs/ai-learning/) | 9-stage RAG tuning curriculum (17 numbered files — concepts + experiments) |
 | [CONTENT-GUIDE.md](./docs/CONTENT-GUIDE.md) | How to add a project / blog / travel memory |
 | [DEPLOYMENT.md](./docs/DEPLOYMENT.md) | GH Pages + HF Space deploy from one monorepo |
 | [TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md) | Debugging log (grows over time) |

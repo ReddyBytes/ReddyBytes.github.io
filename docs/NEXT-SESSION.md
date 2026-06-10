@@ -21,7 +21,7 @@
   - `docs/DESIGN-SYSTEM.md` (hybrid palette + motion rules)
   - `docs/RAG-BACKEND.md` (FastAPI architecture + plug-and-play)
   - `docs/CONTENT-GUIDE.md` (Markdown + frontmatter schema)
-  - `docs/AI-LEARNING-LOG.md` (9-stage tuning curriculum)
+  - `docs/ai-learning/` (17 numbered files — Stage 1 concepts + Stages 2-9)
   - `docs/DEPLOYMENT.md` (GH Pages + HF Space deploy)
   - `docs/TROUBLESHOOTING.md` (3 entries from this session)
   - `docs/adr/0001-0005-*.md` (5 ADRs covering key decisions)
@@ -71,7 +71,7 @@
 
 5. **Hero portal** (Layer 1) — silhouette + glowing ring + skippable boot sequence + pull-thread affordance, CSS-only animation, <100KB bundle
 
-6. **Backend scaffold (same monorepo, `backend/` at root)** — `backend/main.py` FastAPI hello-world, `requirements.txt` at root, `Dockerfile` at root, then walk through Stage 1-2 of AI-LEARNING-LOG.md
+6. **Backend scaffold (same monorepo, `backend/` at root)** — `backend/main.py` FastAPI hello-world, `requirements.txt` at root, `Dockerfile` at root, then walk through Stage 1-2 of `docs/ai-learning/`
 
 ### Open decisions still to lock
 
@@ -113,7 +113,7 @@ docs: scaffold architecture, design system, RAG, ADRs, content guide, deployment
 - DESIGN-SYSTEM.md — hybrid palette (Layer 1 restrained, Layer 2+ vivid), typography, motion rules
 - RAG-BACKEND.md — FastAPI architecture, plug-and-play interfaces, recruiter modes
 - CONTENT-GUIDE.md — Markdown + frontmatter schema, how to add project/travel/blog
-- AI-LEARNING-LOG.md — 9-stage RAG tuning curriculum (concepts → minimal → eval → tune → harden)
+- ai-learning/ — 9-stage RAG tuning curriculum (17 numbered files — concepts → minimal → eval → tune → harden)
 - DEPLOYMENT.md — GH Pages + HF Space deploy steps + rollback
 - TROUBLESHOOTING.md — 3 entries from session (git pull failure, nested repos, folder naming)
 - adr/0001-0005 — Next.js+FastAPI, GH Pages+HF Spaces, 3-layer model, hybrid palette, Gemini+Claude

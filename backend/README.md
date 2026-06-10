@@ -13,7 +13,7 @@ The Python service that powers the AI assistant orb on [reddybytes.github.io](ht
 - ✅ Pydantic Settings (env vars via `.env`)
 - ✅ Dockerfile at repo root (HF Space entry)
 - ✅ pytest setup with health endpoint tests
-- ⏳ RAG pipeline — see `docs/AI-LEARNING-LOG.md` (9-stage curriculum)
+- ⏳ RAG pipeline — see [`docs/ai-learning/`](../docs/ai-learning/) (17-file curriculum)
 - ⏳ Rate limiting (slowapi)
 - ⏳ Structured logging (structlog)
 
@@ -60,7 +60,7 @@ ruff format backend/ scripts/ tests/
 
 - [`docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md) — system diagram, folder structure, deploy flow
 - [`docs/RAG-BACKEND.md`](../docs/RAG-BACKEND.md) — RAG pipeline, plug-and-play interfaces, recruiter modes
-- [`docs/AI-LEARNING-LOG.md`](../docs/AI-LEARNING-LOG.md) — 9-stage learning curriculum (treat the RAG build as a learning project)
+- [`docs/ai-learning/`](../docs/ai-learning/) — 9-stage learning curriculum split into 17 numbered files (treat the RAG build as a learning project)
 - [`docs/DEPLOYMENT.md`](../docs/DEPLOYMENT.md) — HF Space deploy steps
 
 ## Why FastAPI + HF Spaces
