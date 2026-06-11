@@ -1,0 +1,329 @@
+/**
+ * Global styles — Layer 1 (dark theme only for v1, light deferred to v2).
+ * Tailwind 4 CSS-first config: theme tokens declared in @theme inline {} block.
+ *
+ * Color palette source: docs/DESIGN-SYSTEM.md (hybrid landing/deep palette).
+ * Layer 1 uses ONLY restrained tokens (purple + cyan + neutrals).
+ * Pink/magenta tokens are DEFERRED to Layer 2+ — do not use here.
+ *
+ * Typography: Space Grotesk (display), Inter (body), JetBrains Mono (mono).
+ * Fonts injected via next/font/google in app/layout.tsx → CSS variables.
+ */
+
+@import "tailwindcss";
+
+/* ============================================================ */
+/*  Theme tokens — exposed as Tailwind utilities                  */
+/*  e.g. --color-bg-base → bg-bg-base, text-bg-base               */
+/* ============================================================ */
+@theme inline {
+  /* Backgrounds */
+  --color-bg-base: #08081a;
+  --color-bg-elevated: #0f0f24;
+  --color-bg-glass: rgba(168, 85, 247, 0.04);
+
+  /* Text */
+  --color-text-primary: #f5f5f7;
+  --color-text-secondary: #b4b4c8;
+  --color-text-tertiary: #6b6b80;
+
+  /* Accent — purple (primary on Layer 1) */
+  --color-accent-purple: #a855f7;
+  --color-accent-purple-bright: #c084fc;
+  --color-accent-purple-deep: #7c3aed;
+  --color-accent-violet: #8b5cf6;
+
+  /* Accent — cyan (secondary on Layer 1) */
+  --color-accent-cyan: #22d3ee;
+  --color-accent-cyan-bright: #67e8f9;
+
+  /* Accent — pink + magenta (UNLOCKED on Layer 2, NEVER on Layer 1) */
+  --color-accent-pink: #ec4899;
+  --color-accent-pink-bright: #f472b6;
+  --color-accent-magenta: #d946ef;
+
+  /* Borders */
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-purple-faint: rgba(168, 85, 247, 0.2);
+  --color-border-cyan-faint: rgba(34, 211, 238, 0.2);
+  --color-border-pink-faint: rgba(236, 72, 153, 0.2);
+
+  /* Fonts (injected via next/font in layout.tsx) */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "Geist Mono", monospace;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+/* ============================================================ */
+/*  Base — html / body / global resets                            */
+/* ============================================================ */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-bg-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Subtle starfield background */
+  background-image:
+    radial-gradient(2px 2px at 15% 22%, rgba(168, 85, 247, 0.18), transparent 50%),
+    radial-gradient(1px 1px at 85% 47%, rgba(34, 211, 238, 0.15), transparent 50%),
+    radial-gradient(1.5px 1.5px at 45% 68%, rgba(168, 85, 247, 0.12), transparent 50%),
+    radial-gradient(1px 1px at 70% 12%, rgba(34, 211, 238, 0.1), transparent 50%),
+    radial-gradient(1.5px 1.5px at 25% 88%, rgba(168, 85, 247, 0.1), transparent 50%);
+  background-attachment: fixed;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+  color: #ffffff;
+}
+
+/* ============================================================ */
+/*  Animations — CSS only on Layer 1                              */
+/* ============================================================ */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  50% { opacity: 0.85; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+}
+
+@keyframes drift-up {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10%, 90% { opacity: 0.7; }
+  100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes thread-unwind {
+  0% { transform: scaleY(1); transform-origin: top; }
+  100% { transform: scaleY(2.5) translateY(20vh); transform-origin: top; opacity: 0; }
+}
+
+/* Layer 2: continuous horizontal scroll for tech chips marquee */
+@keyframes marquee-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Layer 2: slow rotation for AI orb neural crystal */
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+.animate-float-y { animation: float-y 8s ease-in-out infinite; }
+.animate-bounce-down { animation: bounce-down 1.6s ease-in-out infinite; }
+.animate-blink { animation: blink 1s steps(2, start) infinite; }
+.animate-status-pulse { animation: status-pulse 2s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.animate-thread-unwind { animation: thread-unwind 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.animate-marquee-x { animation: marquee-x 60s linear infinite; }
+.animate-rotate-slow { animation: rotate-slow 18s linear infinite; }
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* ============================================================ */
+/*  Case study body — Markdown-rendered prose styling (Layer 3)   */
+/* ============================================================ */
+.case-study-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  scroll-margin-top: 6rem;
+}
+
+.case-study-body h2::before {
+  content: "## ";
+  color: var(--color-accent-pink-bright);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  opacity: 0.6;
+}
+
+/* Inject anchor id for IntersectionObserver TOC tracking */
+.case-study-body h2 {
+  position: relative;
+}
+
+.case-study-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.case-study-body p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.case-study-body strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.case-study-body a {
+  color: var(--color-accent-cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s;
+}
+
+.case-study-body a:hover {
+  color: var(--color-accent-cyan-bright);
+}
+
+.case-study-body ul,
+.case-study-body ol {
+  color: var(--color-text-secondary);
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+}
+
+.case-study-body ul {
+  list-style-type: disc;
+}
+
+.case-study-body ol {
+  list-style-type: decimal;
+}
+
+.case-study-body li {
+  margin-top: 0.4rem;
+  line-height: 1.7;
+}
+
+.case-study-body code:not(pre code) {
+  background: rgba(168, 85, 247, 0.12);
+  color: var(--color-accent-purple-bright);
+  border: 1px solid var(--color-border-purple-faint);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.case-study-body pre {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.case-study-body pre code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-text-secondary);
+}
+
+.case-study-body blockquote {
+  border-left: 3px solid var(--color-accent-pink);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.case-study-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.case-study-body th {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.case-study-body td {
+  padding: 0.75rem;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.case-study-body hr {
+  border: none;
+  border-top: 1px solid var(--color-border-subtle);
+  margin: 2rem 0;
+}
+
+/* ============================================================ */
+/*  Reduced motion — kill all animations                          */
+/* ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
