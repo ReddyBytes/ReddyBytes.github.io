@@ -37,10 +37,16 @@
   --color-accent-cyan: #22d3ee;
   --color-accent-cyan-bright: #67e8f9;
 
+  /* Accent — pink + magenta (UNLOCKED on Layer 2, NEVER on Layer 1) */
+  --color-accent-pink: #ec4899;
+  --color-accent-pink-bright: #f472b6;
+  --color-accent-magenta: #d946ef;
+
   /* Borders */
   --color-border-subtle: rgba(255, 255, 255, 0.08);
   --color-border-purple-faint: rgba(168, 85, 247, 0.2);
   --color-border-cyan-faint: rgba(34, 211, 238, 0.2);
+  --color-border-pink-faint: rgba(236, 72, 153, 0.2);
 
   /* Fonts (injected via next/font in layout.tsx) */
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -131,6 +137,18 @@ body {
   100% { transform: scaleY(2.5) translateY(20vh); transform-origin: top; opacity: 0; }
 }
 
+/* Layer 2: continuous horizontal scroll for tech chips marquee */
+@keyframes marquee-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Layer 2: slow rotation for AI orb neural crystal */
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
 .animate-float-y { animation: float-y 8s ease-in-out infinite; }
 .animate-bounce-down { animation: bounce-down 1.6s ease-in-out infinite; }
@@ -138,6 +156,8 @@ body {
 .animate-status-pulse { animation: status-pulse 2s ease-in-out infinite; }
 .animate-fade-in-up { animation: fade-in-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
 .animate-thread-unwind { animation: thread-unwind 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.animate-marquee-x { animation: marquee-x 60s linear infinite; }
+.animate-rotate-slow { animation: rotate-slow 18s linear infinite; }
 
 /* Glassmorphism utility */
 .glass {

@@ -1,0 +1,48 @@
+{
+  "$schema": "Shape: { questions: MockQuestion[] }. See src/lib/ai/types.ts.",
+  "_note": "v1 mocked answers. Shape matches what the real /api/v1/ask endpoint will return so the orb can swap to live RAG with a single client URL change.",
+  "questions": [
+    {
+      "id": "tell-me-about-penchala",
+      "text": "Tell me about Penchala",
+      "audience": "recruiter",
+      "answer": "Penchala is a Software Engineer with 5+ years of Python backend experience, currently learning AI deeply (RAG systems, LangChain, fine-tuning LLMs). He's built and shipped Prepzy — an exam preparation platform from zero to production using Python, FastAPI, PostgreSQL, Airflow, and Kubernetes. His strongest engineering muscle is building real systems that work at scale, with a heavy bias toward plug-and-play architecture.",
+      "sources": ["content/about.md", "content/journey.md"]
+    },
+    {
+      "id": "python-projects",
+      "text": "Show me his Python projects",
+      "audience": "recruiter",
+      "answer": "His most production-grade Python work is Prepzy — a govt exam prep platform with FastAPI backend, PostgreSQL + Drizzle ORM, async workers via Airflow, Redis caching, RAG-powered AI assistant. Beyond Prepzy, this portfolio itself is Python-powered: the AI orb you're talking to runs on a FastAPI backend with sentence-transformers + FAISS + Gemini. He also writes Python build scripts for sitemap generation, OG images (PIL), and knowledge index pre-building.",
+      "sources": ["content/projects/prepzy.md", "content/projects/portfolio.md"]
+    },
+    {
+      "id": "kubernetes-experience",
+      "text": "What's his Kubernetes experience?",
+      "audience": "recruiter",
+      "answer": "Hands-on Kubernetes at his current role — managing Airflow workloads on AWS EKS, debugging pod failures, configuring HPA + resource requests/limits, IAM IRSA, telegraf metric scraping, and rolling deploys. He also wrote a personal debugger skill for Airflow on K8s covering pod crashes, container issues, S3/IAM problems, and Terraform deploy failures. Strong at the intersection of K8s + Python + data engineering.",
+      "sources": ["content/experience.md", "content/skills.md"]
+    },
+    {
+      "id": "rag-systems",
+      "text": "Explain how RAG-powered systems work",
+      "audience": "showcase",
+      "answer": "Retrieval-Augmented Generation (RAG) gives LLMs an open-book exam. Instead of asking the LLM blind, you (1) embed your documents into vectors, (2) embed the user's question into the same vector space, (3) retrieve the most semantically similar chunks via cosine similarity, then (4) hand the LLM the question + retrieved chunks as context. The LLM answers from real source text instead of hallucinating. This portfolio's AI orb (once wired to the real backend) will use FastAPI + sentence-transformers + FAISS + Gemini to do exactly that — see the 9-stage learning curriculum in docs/ai-learning/.",
+      "sources": ["docs/ai-learning/01-big-picture.md", "docs/ai-learning/02-embeddings.md"]
+    },
+    {
+      "id": "currently-learning",
+      "text": "What is he currently learning?",
+      "audience": "personal-brand",
+      "answer": "Right now he's deep in AI engineering — building production RAG systems, experimenting with embedding model choices, learning prompt engineering for LLM applications, and exploring fine-tuning (LoRA) and agentic patterns. He's documenting every step publicly in docs/ai-learning/ as a 9-stage curriculum: concepts → minimal end-to-end → eval set → chunking + embedding experiments → re-ranking → prompt tuning → recruiter modes → production hardening. The goal isn't just to use AI tools — it's to deeply understand them.",
+      "sources": ["docs/ai-learning/README.md"]
+    },
+    {
+      "id": "llm-applications",
+      "text": "Can he build LLM applications?",
+      "audience": "freelance",
+      "answer": "Yes — and this portfolio is itself proof. The AI orb is a real LLM application: FastAPI backend, async streaming responses, RAG over Markdown content, plug-and-play LLM provider (Gemini primary, Claude Haiku fallback), rate limiting, structured logging, recruiter-mode prompts. Beyond this portfolio, he's interested in building production LLM apps with proper evaluation, cost-conscious design, and graceful degradation when the LLM is down or rate-limited.",
+      "sources": ["content/projects/portfolio.md", "docs/RAG-BACKEND.md"]
+    }
+  ]
+}
