@@ -69,3 +69,89 @@ export const BOOT_LINES = [
   "Loading neural architectures...",
   "Profile ready.",
 ] as const;
+
+/** Layer 2 stats bar values (conservative defaults — edit me before merge). */
+export const LAYER2_STATS = [
+  { value: "5+", label: "YEARS" },
+  { value: "12+", label: "PROJECTS" },
+  { value: "2.5K", label: "COMMITS" },
+  { value: "20+", label: "TECHNOLOGIES" },
+] as const;
+
+/** Layer 2 tech chips — 12 techs ordered by AI engineer relevance. */
+export const LAYER2_TECH_CHIPS = [
+  "Python",
+  "FastAPI",
+  "Airflow",
+  "Kubernetes",
+  "Docker",
+  "PostgreSQL",
+  "LangChain",
+  "RAG",
+  "LLMs",
+  "Linux",
+  "AWS",
+  "Next.js",
+] as const;
+
+/** Layer 2 section cards — 6 cards, action-oriented titles. */
+export const LAYER2_SECTION_CARDS = [
+  {
+    title: "SEE MY WORK",
+    tease: "What I've shipped end-to-end",
+    href: "/projects",
+    icon: "projects" as const,
+    gradient: "from-accent-cyan to-accent-purple",
+  },
+  {
+    title: "TRACE MY PATH",
+    tease: "Where I've worked + grown",
+    href: "/experience",
+    icon: "experience" as const,
+    gradient: "from-accent-purple to-accent-pink",
+  },
+  {
+    title: "EXPLORE THE LAB",
+    tease: "Architectures I've designed",
+    href: "/architecture-lab",
+    icon: "lab" as const,
+    gradient: "from-accent-pink to-accent-cyan",
+  },
+  {
+    title: "WANDER WITH ME",
+    tease: "Life beyond code",
+    href: "/travel",
+    icon: "travel" as const,
+    gradient: "from-accent-purple to-accent-magenta",
+  },
+  {
+    title: "CHECK MY STACK",
+    tease: "What I know deeply",
+    href: "/skills",
+    icon: "skills" as const,
+    gradient: "from-accent-magenta to-accent-cyan",
+  },
+  {
+    title: "KNOW THE BUILDER",
+    tease: "The story so far",
+    href: "/about",
+    icon: "about" as const,
+    gradient: "from-accent-cyan to-accent-violet",
+  },
+] as const;
+
+/** Layer 2 why-hire-me 3 bullets. */
+export const LAYER2_WHY_HIRE_ME = [
+  {
+    headline: "Ship-fast engineer",
+    tease: "Delivered Prepzy from 0 → production in <6 months",
+  },
+  {
+    headline: "AI-curious",
+    tease: "Building real RAG systems with FastAPI + FAISS + Gemini",
+  },
+  {
+    headline: "Systems thinker",
+    tease: "Plug-and-play architecture · Airflow · Kubernetes",
+  },
+] as const;

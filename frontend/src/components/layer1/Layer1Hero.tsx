@@ -97,25 +97,6 @@ export function Layer1Hero() {
           <SystemStatus />
         </div>
       </main>
-
-      {/* Layer 2 placeholder — pull-thread + primary CTA scroll here */}
-      <section
-        id={SCROLL_TARGET_ID}
-        className="grid min-h-screen place-items-center px-4"
-      >
-        <div className="text-center">
-          <p
-            className="mb-4 text-xs font-medium tracking-widest text-accent-cyan uppercase"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Layer 2 — coming soon
-          </p>
-          <p className="max-w-md text-base text-text-secondary">
-            Section cards, tech stack, AI orb, and the dashboard live here in
-            the next branch.
-          </p>
-        </div>
-      </section>
     </>
   );
 }
