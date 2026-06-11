@@ -1,0 +1,162 @@
+/**
+ * Global styles — Layer 1 (dark theme only for v1, light deferred to v2).
+ * Tailwind 4 CSS-first config: theme tokens declared in @theme inline {} block.
+ *
+ * Color palette source: docs/DESIGN-SYSTEM.md (hybrid landing/deep palette).
+ * Layer 1 uses ONLY restrained tokens (purple + cyan + neutrals).
+ * Pink/magenta tokens are DEFERRED to Layer 2+ — do not use here.
+ *
+ * Typography: Space Grotesk (display), Inter (body), JetBrains Mono (mono).
+ * Fonts injected via next/font/google in app/layout.tsx → CSS variables.
+ */
+
+@import "tailwindcss";
+
+/* ============================================================ */
+/*  Theme tokens — exposed as Tailwind utilities                  */
+/*  e.g. --color-bg-base → bg-bg-base, text-bg-base               */
+/* ============================================================ */
+@theme inline {
+  /* Backgrounds */
+  --color-bg-base: #08081a;
+  --color-bg-elevated: #0f0f24;
+  --color-bg-glass: rgba(168, 85, 247, 0.04);
+
+  /* Text */
+  --color-text-primary: #f5f5f7;
+  --color-text-secondary: #b4b4c8;
+  --color-text-tertiary: #6b6b80;
+
+  /* Accent — purple (primary on Layer 1) */
+  --color-accent-purple: #a855f7;
+  --color-accent-purple-bright: #c084fc;
+  --color-accent-purple-deep: #7c3aed;
+  --color-accent-violet: #8b5cf6;
+
+  /* Accent — cyan (secondary on Layer 1) */
+  --color-accent-cyan: #22d3ee;
+  --color-accent-cyan-bright: #67e8f9;
+
+  /* Borders */
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-purple-faint: rgba(168, 85, 247, 0.2);
+  --color-border-cyan-faint: rgba(34, 211, 238, 0.2);
+
+  /* Fonts (injected via next/font in layout.tsx) */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "Geist Mono", monospace;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+/* ============================================================ */
+/*  Base — html / body / global resets                            */
+/* ============================================================ */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-bg-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Subtle starfield background */
+  background-image:
+    radial-gradient(2px 2px at 15% 22%, rgba(168, 85, 247, 0.18), transparent 50%),
+    radial-gradient(1px 1px at 85% 47%, rgba(34, 211, 238, 0.15), transparent 50%),
+    radial-gradient(1.5px 1.5px at 45% 68%, rgba(168, 85, 247, 0.12), transparent 50%),
+    radial-gradient(1px 1px at 70% 12%, rgba(34, 211, 238, 0.1), transparent 50%),
+    radial-gradient(1.5px 1.5px at 25% 88%, rgba(168, 85, 247, 0.1), transparent 50%);
+  background-attachment: fixed;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+  color: #ffffff;
+}
+
+/* ============================================================ */
+/*  Animations — CSS only on Layer 1                              */
+/* ============================================================ */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  50% { opacity: 0.85; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+}
+
+@keyframes drift-up {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10%, 90% { opacity: 0.7; }
+  100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes thread-unwind {
+  0% { transform: scaleY(1); transform-origin: top; }
+  100% { transform: scaleY(2.5) translateY(20vh); transform-origin: top; opacity: 0; }
+}
+
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+.animate-float-y { animation: float-y 8s ease-in-out infinite; }
+.animate-bounce-down { animation: bounce-down 1.6s ease-in-out infinite; }
+.animate-blink { animation: blink 1s steps(2, start) infinite; }
+.animate-status-pulse { animation: status-pulse 2s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.animate-thread-unwind { animation: thread-unwind 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* ============================================================ */
+/*  Reduced motion — kill all animations                          */
+/* ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

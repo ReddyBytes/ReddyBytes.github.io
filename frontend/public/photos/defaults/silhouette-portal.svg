@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Default silhouette — generic stylized engineer figure inside a portal.
+  Used as fallback when public/photos/profile/hero.jpg doesn't exist.
+  Per LAYER1.md photo fallback rule.
+
+  Designed to fit inside the HeroPortal glowing ring (480px desktop / 280px mobile).
+  Pure SVG, ~3KB, no JS, no raster fallback needed.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320" width="240" height="320" fill="none" aria-hidden="true">
+  <defs>
+    <radialGradient id="silhouette-glow" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#7c3aed" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#08081a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="silhouette-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a3a"/>
+      <stop offset="100%" stop-color="#0f0f24"/>
+    </linearGradient>
+    <linearGradient id="silhouette-edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+
+  <!-- soft ambient glow behind figure -->
+  <circle cx="120" cy="160" r="120" fill="url(#silhouette-glow)"/>
+
+  <!-- platform shadow under figure -->
+  <ellipse cx="120" cy="296" rx="56" ry="6" fill="#a855f7" fill-opacity="0.12"/>
+
+  <!-- figure body — abstract shoulders + torso -->
+  <path
+    d="M 88 180 Q 88 160 100 152 L 100 130 Q 100 110 120 110 Q 140 110 140 130 L 140 152 Q 152 160 152 180 L 156 230 Q 158 270 152 295 L 88 295 Q 82 270 84 230 Z"
+    fill="url(#silhouette-fill)"
+    stroke="url(#silhouette-edge)"
+    stroke-width="1.2"
+    stroke-opacity="0.6"
+  />
+
+  <!-- head -->
+  <circle
+    cx="120"
+    cy="92"
+    r="20"
+    fill="url(#silhouette-fill)"
+    stroke="url(#silhouette-edge)"
+    stroke-width="1.2"
+    stroke-opacity="0.6"
+  />
+
+  <!-- subtle inner highlight on chest (suggests engineer "energy core") -->
+  <circle cx="120" cy="170" r="4" fill="#a855f7" fill-opacity="0.5"/>
+</svg>
